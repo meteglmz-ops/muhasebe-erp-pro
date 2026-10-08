@@ -473,6 +473,7 @@ CREATE TABLE IF NOT EXISTS documents (
     linked_entity_type TEXT, -- INVOICE, CUSTOMER, SUPPLIER, EXPENSE
     linked_entity_id TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     is_deleted INTEGER DEFAULT 0,
     FOREIGN KEY(company_id) REFERENCES companies(id) ON DELETE CASCADE,
     FOREIGN KEY(folder_id) REFERENCES folders(id) ON DELETE SET NULL

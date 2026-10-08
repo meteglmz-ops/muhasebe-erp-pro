@@ -32,6 +32,16 @@ export function initDatabase() {
     console.warn('users migration note:', err);
   }
 
+  // Migration: Add updated_at column to documents if not present
+  try {
+    const docCols = db.prepare('PRAGMA table_info(documents)').all() as any[];
+    if (docCols.length > 0 && !docCols.some((col: any) => col.name === 'updated_at')) {
+      db.exec('ALTER TABLE documents ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP');
+    }
+  } catch (err) {
+    console.warn('documents migration note:', err);
+  }
+
   // Email and OTP tables initialization
   try {
     const { initEmailAndOtpSchema } = require('../services/email-service');
