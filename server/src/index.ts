@@ -72,11 +72,11 @@ app.use('/api/admin', adminRouter);
 const clientDist = path.resolve(__dirname, '../../client/dist');
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
-  app.get('*', (req: Request, res: Response, next: NextFunction) => {
-    if (req.path.startsWith('/api') || req.path.startsWith('/storage')) {
-      return next();
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/storage')) {
+      return res.sendFile(path.join(clientDist, 'index.html'));
     }
-    res.sendFile(path.join(clientDist, 'index.html'));
+    next();
   });
 }
 

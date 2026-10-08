@@ -36,7 +36,7 @@ export function initDatabase() {
   try {
     const docCols = db.prepare('PRAGMA table_info(documents)').all() as any[];
     if (docCols.length > 0 && !docCols.some((col: any) => col.name === 'updated_at')) {
-      db.exec('ALTER TABLE documents ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP');
+      db.exec('ALTER TABLE documents ADD COLUMN updated_at DATETIME');
     }
   } catch (err) {
     console.warn('documents migration note:', err);
