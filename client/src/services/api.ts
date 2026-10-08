@@ -12,6 +12,10 @@ export const getApiBaseUrl = (): string => {
     if (window.location.port === '5173') {
       return `${window.location.protocol}//${window.location.hostname}:5000/api`;
     }
+    // If running on Vercel domain, automatically route to the live cloud backend
+    if (window.location.hostname.includes('vercel.app')) {
+      return 'https://oclc-april-actress-indices.trycloudflare.com/api';
+    }
     // In production (single-domain cloud deploy like Render/Railway/Docker)
     if (window.location.origin) {
       return `${window.location.origin}/api`;
@@ -81,7 +85,19 @@ class ApiService {
       return response.blob() as any;
     }
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    let data: any;
+
+    if (contentType.includes('application/json')) {
+      try {
+        data = await response.json();
+      } catch (err) {
+        throw new Error('Sunucudan geçersiz veri formatı döndü.');
+      }
+    } else {
+      const text = await response.text();
+      throw new Error(text || `Sunucu bağlantı hatası (HTTP ${response.status})`);
+    }
 
     if (!response.ok || !data.success) {
       throw new Error(data.error || 'İşlem sırasında bir hata oluştu.');
