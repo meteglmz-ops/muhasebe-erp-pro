@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build output
+client/dist/
+dist/
+
+# SQLite Databases & Backups (state files)
+storage/*.sqlite
+storage/*.sqlite-wal
+storage/*.sqlite-shm
+storage/backups/*.sqlite
+!storage/.gitkeep
+!storage/backups/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db

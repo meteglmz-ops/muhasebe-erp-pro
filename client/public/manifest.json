@@ -1,0 +1,18 @@
+{
+  "short_name": "BeeCursor ERP",
+  "name": "BeeCursor ERP Pro - Kurumsal Muhasebe & Finans",
+  "description": "Bulut ve Firebase Entegreli Çok Şirketli Kurumsal Muhasebe Sistemi",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["business", "finance", "productivity"]
+}
