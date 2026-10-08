@@ -16,6 +16,7 @@ storage/*.sqlite
 storage/*.sqlite-wal
 storage/*.sqlite-shm
 storage/backups/*.sqlite
+*.db
 !storage/.gitkeep
 !storage/backups/.gitkeep
 
