@@ -14,7 +14,7 @@ export const getApiBaseUrl = (): string => {
     }
     // If running on Vercel domain, automatically route to the live cloud backend
     if (window.location.hostname.includes('vercel.app')) {
-      return 'https://oclc-april-actress-indices.trycloudflare.com/api';
+      return 'https://friendship-translator-formula-cookbook.trycloudflare.com/api';
     }
     // In production (single-domain cloud deploy like Render/Railway/Docker)
     if (window.location.origin) {
